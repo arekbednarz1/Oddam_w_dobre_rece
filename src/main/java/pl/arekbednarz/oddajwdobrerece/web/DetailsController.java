@@ -72,44 +72,44 @@ public class DetailsController {
 
     @GetMapping("/details")
     String getLoggedUserDetails() {
-        return "views/user/details";
+        return "views/user/userDetails";
     }
 
     @GetMapping("/details/edit")
     String editLoggedUser(Model model, Principal principal) {
         User user = userService.findUserByEmail(principal.getName());
         model.addAttribute("user", user);
-        return "views/user/edit";
+        return "views/user/userEdit";
     }
 
     @PostMapping("/details/edit")
     String EditLoggedUserAction(@Valid User user, BindingResult bindingResult, Principal principal) {
         if (bindingResult.hasErrors()) {
-            return "views/user/edit";
+            return "views/user/userEdit";
         }
         User userLogged = userService.findUserByEmail(principal.getName());
         userLogged.setName(user.getName());
         userLogged.setSurname(user.getSurname());
         userLogged.setEmail(user.getEmail());
         userService.save(userLogged);
-        return "views/user/edit";
+        return "views/user/userEdit";
     }
 
 
     @GetMapping("/details/editpass")
     String editLoggedUserPass(Model model) {
         model.addAttribute("passwordDto", new PasswordDTO());
-        return "views/user/editpass";
+        return "views/user/passwordEdit";
     }
 
     @PostMapping("/details/editpass")
     String editLoggedUserPassAction(@Valid PasswordDTO passwordDTO, BindingResult bindingResult, Model model, Principal principal) {
         if (bindingResult.hasErrors()) {
-            return "views/user/editpass";
+            return "views/user/passwordEdit";
         }
         if (!passwordDTO.getPassword().equals(passwordDTO.getPasswordRepeat())) {
             model.addAttribute("msg", true);
-            return "views/user/editpass";
+            return "views/user/passwordEdit";
         }
         User user = userService.findUserByEmail(principal.getName());
         user.setPassword(passwordEncoder.encode(passwordDTO.getPassword()));

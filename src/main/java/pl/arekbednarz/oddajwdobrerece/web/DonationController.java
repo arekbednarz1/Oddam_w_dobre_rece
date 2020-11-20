@@ -48,7 +48,7 @@ public class DonationController {
         }
         donation.setUser(userService.findUserByEmail(principal.getName()));
         donationService.save(donation);
-        return "views/user/donationConfirmation";
+        return "views/user/donationConfirm";
     }
 
     @ModelAttribute
