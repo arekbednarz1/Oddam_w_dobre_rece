@@ -6,6 +6,7 @@
 - Spring Form
 - Hibernate
 - Spring Security
+- MySQL
 
 ## funkcjonalności
 1. Strona główna.
