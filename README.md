@@ -1,4 +1,4 @@
-# Projekt portfolioLab Coderslab.
+# Projekt portfolioLab.
 <img src="3.png">
 
 ## Wykorzystane technologie:
